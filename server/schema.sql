@@ -8,14 +8,14 @@ CREATE TABLE username (
  PRIMARY KEY (id)
 );
 
-CREATE TABLE message (
+CREATE TABLE messages (
   id INT NOT NULL AUTO_INCREMENT,
   createDateTime TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
   message TEXT NOT NULL,
   PRIMARY KEY (id)
 );
 
-CREATE TABLE room (
+CREATE TABLE rooms (
   id INT NOT NULL AUTO_INCREMENT,
   name VARCHAR(20) NOT NULL,
   PRIMARY KEY (id)
@@ -30,7 +30,7 @@ CREATE TABLE username_message (
   FOREIGN KEY (id_username)
           REFERENCES username(id),
   FOREIGN KEY (id_room)
-            REFERENCES room(id)
+            REFERENCES rooms(id)
 );
 
 CREATE TABLE message_room (
@@ -39,9 +39,9 @@ CREATE TABLE message_room (
   id_room INT,
   PRIMARY KEY(id),
   FOREIGN KEY (id_message)
-          REFERENCES message(id),
+          REFERENCES messages(id),
   FOREIGN KEY (id_room)
-          REFERENCES room(id)
+          REFERENCES rooms(id)
 );
 
 /*  Execute this file from the command line by typing:
