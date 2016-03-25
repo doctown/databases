@@ -22,15 +22,15 @@ CREATE TABLE rooms (
 );
 
 
-CREATE TABLE username_message (
+CREATE TABLE message_username (
   id INT NOT NULL AUTO_INCREMENT,
+  id_message INT,
   id_username INT,
-  id_room INT,
   PRIMARY KEY (id),
+  FOREIGN KEY (id_message)
+            REFERENCES messages(id),
   FOREIGN KEY (id_username)
-          REFERENCES username(id),
-  FOREIGN KEY (id_room)
-            REFERENCES rooms(id)
+          REFERENCES username(id)
 );
 
 CREATE TABLE message_room (
