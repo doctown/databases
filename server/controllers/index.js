@@ -1,5 +1,5 @@
 var models = require('../models');
-var app = require('../app');
+//var app = require('../app');
 
 module.exports = {
   messages: {
