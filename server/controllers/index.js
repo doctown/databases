@@ -5,9 +5,8 @@ module.exports = {
   messages: {
     get: function (req, res) {
       // create an empty array
-      var messages = [];
       // call models.messages.get();
-      messages = models.messages.get();
+      var messages = models.messages.get();
       // Stringify the array
       // Send the array back to the user
       res.status(200).json(JSON.stringify(messages)).end();
@@ -16,7 +15,7 @@ module.exports = {
       // Get the data from the post request
       var body = req.body;
       // Call models.messages.post(data);
-      models.messages.post(JSON.parse(body));
+      models.messages.post(body);
       // Reply with object creation response code
       res.status(201).end();
     }
@@ -24,8 +23,15 @@ module.exports = {
 
   users: {
     // Ditto as above
-    get: function (req, res) {},
-    post: function (req, res) {}
+    get: function (req, res) {
+      var users = models.users.get();
+      res.status(200).json(JSON.stringify(users)).end();
+    },
+    post: function (req, res) {
+      var body = req.body;
+      models.users.post(body);
+      res.status(201).end();
+    }
   }
 };
 
