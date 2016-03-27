@@ -4,25 +4,29 @@ var models = require('../models');
 module.exports = {
   messages: {
     get: function (req, res) {
-      // create an empty array
-      // call models.messages.get();
-      var messages = models.messages.get();
-      // Stringify the array
-      // Send the array back to the user
-      res.status(200).json(JSON.stringify(messages)).end();
+      models.messages.get(function(err, results) {
+        var messages = [];
+        results.forEach(function(message) { // assign values for each area to message object
+          var retrievedMessage = {};
+          retrievedMessage.id = message.id;
+          retrievedMessage.createDateTime = message.createDateTime;
+          retrievedMessage.message = message.message;
+          retrievedMessage.username = message.username;
+          retrievedMessage.roomname = message.name;
+          messages.push(retrievedMessage);
+        });
+
+        res.status(200).json(JSON.stringify(messages)).end();
+      });
     }, // a function which handles a get request for all messages
     post: function (req, res) { // a function which handles posting a message to the database
-      // Get the data from the post request
       var body = req.body;
-      // Call models.messages.post(data);
       models.messages.post(body);
-      // Reply with object creation response code
       res.status(201).end();
     }
   },
 
   users: {
-    // Ditto as above
     get: function (req, res) {
       var users = models.users.get();
       res.status(200).json(JSON.stringify(users)).end();

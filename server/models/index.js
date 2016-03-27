@@ -2,16 +2,11 @@ var db = require('../db');
 
 module.exports = {
   messages: {
-    get: function () { // a function which produces all the messages
-      // create an empty message array
-      var messages = [];
-      var rooms = {};
-      var usernames = {};
-      var messagesRoom = {};
-      var messagesUsername = {};
-
+    get: function (callback) { // a function which produces all the messages
+      db.query('SELECT messages.id, messages.createDateTime, messages.message, rooms.name, username.username FROM username, message_username, messages, message_room, rooms WHERE messages.id = message_room.id_message AND message_room.id_room = rooms.id AND username.id = message_username.id_username AND message_username.id_message = messages.id', callback);
       // Select all messages from messagesRoom
-      db.query('SELECT * FROM messages', function(err, result) {
+
+    /*  db.query('SELECT * FROM messages', function(err, result) {
         if (err) {
           throw err;
         }
@@ -63,15 +58,7 @@ module.exports = {
         result.forEach(function(message) {
           messagesRoom[message.id_message] = rooms[message.id_room];
         });
-      });
-
-      // For each message
-      messages.forEach(function(message) { // assign values for each area to message object
-        message.username = messagesUsername[message.id];
-        message.roomname = messagesRoom[message.id];
-      });
-
-      return messages;
+      });*/
     },
     post: function (message) { // a function which can be used to insert a message into the database
       var usernameID, roomID, messageID;

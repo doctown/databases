@@ -76,16 +76,22 @@ describe('Persistent Node Chat Server', function() {
     // them up to you. */
 
     dbConnection.query(queryString, queryArgs, function(err, result) {
-      if (err) { throw err; }
+      if (err) {
+        throw err;
+      }
       var idMessage = result.insertId;
-      var queryString = 'INSERT INTO message_username SET idMessage=?, id_username=?';
+      var queryString = 'INSERT INTO message_username SET id_message=?, id_username=?';
       var queryArgs = [idMessage, 1];
-      dbConnection.query(queryString, queryArgs, function(err) {
-        if (err) { throw err; }
-        var queryString = 'INSERT INTO message_room SET idMessage=?, id_room=?';
+      dbConnection.query(queryString, queryArgs, function(err, result) {
+        if (err) {
+          throw err;
+        }
+        var queryString = 'INSERT INTO message_room SET id_message=?, id_room=?';
         var queryArgs = [idMessage, 2];
-        dbConnection.query(queryString, queryArgs, function(err) {
-          if (err) { throw err; }
+        dbConnection.query(queryString, queryArgs, function(err, result) {
+          if (err) {
+            throw err;
+          }
 
           // Now query the Node chat server and see if it returns
           // the message we just inserted:
