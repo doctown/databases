@@ -1,0 +1,81 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title>chatterbox</title>
+    <link rel="stylesheet" href="styles/styles.css">
+    <link rel="stylesheet" type="text/css"  href="bower_components/bootstrap/dist/css/bootstrap.css">
+    <!-- dependencies -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/babel-core/5.6.15/browser.js"></script>
+    <script src="bower_components/jquery/dist/jquery.js"></script>
+    <script src="bower_components/underscore/underscore-min.js"></script>
+    <script type="text/javascript" src="bower_components/bootstrap/js/dropdown.js"></script>
+    <!-- your scripts -->
+    <script src="env/config.js"></script>
+    <script src="scripts/app.js"></script>
+  </head>
+  <body>
+    <div id="main" class="container">
+
+      <div class="row">
+        <div class="col-md-8"></div>
+        <div class="col-md-4">
+          <nav class="menu">
+            <ul class="nav nav-pills">
+              <li role="presentation" class="dropdown">
+                <a class="dropdown-toggle" data-toggle="dropdown" href="#" role="     button" aria-haspopup="true" aria-expanded="false">
+                  Menu 
+                  <span class="caret"></span>
+                </a>
+              <ul class="dropdown-menu">            
+                <li class="username-change">Change username</li>
+                <li class="room-add">Add new chatroom</li>
+              </ul>
+            </li>
+          </ul>
+        </nav>
+      </div>
+    </div>
+
+    <div class="row">
+      <div class="col-md-8">
+        <h1>chatterbox</h1>
+        </div>
+      <!-- Allow user tabs for chat rooms -->
+    </div>
+
+      <div class="tabs row">
+        <ul class="nav nav-pills tab-links">
+          <li role="presentation" class="main active"><a href="#">main</a></li>
+        </ul>
+      </div>
+      <!-- Move username change to menu
+        <form id="user" action="">Username:
+          <input id="user-input" type="text" value="Enter a username"></input>
+          <button class="submit-username" type="button">Submit</button>
+        </form> 
+      -->
+      <div class="row">
+        <form action="#"> Room:
+          <select id="roomSelect" name="roomSelect">
+          <option value="main">lobby</option>
+          </select>
+        </form>
+      </div>
+      <div class="row">
+        <form id="send" action="#">Enter your message:
+          <input id="message" type="text" name="message" />
+          <button class="submit" type="submit">Submit</button>
+        </form>
+      </div>
+      <div class="row">
+        <div id="chats" class="fade in active tab-pane"></div>
+        <script type="text/javascript">
+          $(document).ready(function() {
+            app.init();
+          });
+        </script>
+      </div>
+    </div>
+  </body>
+</html>

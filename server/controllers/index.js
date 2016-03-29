@@ -4,6 +4,7 @@ var models = require('../models');
 module.exports = {
   messages: {
     get: function (req, res) {
+      console.log('GET BEING CALLED');
       models.messages.get(function(err, results) {
         var messages = [];
         results.forEach(function(message) { // assign values for each area to message object
